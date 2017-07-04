@@ -12,7 +12,11 @@
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
 		<property name="hibernate.hbm2ddl.auto">create</property>
-		<mapping resource="basic.hbm.xml"></mapping>
+		
+		<!-- Employee -->
+		<mapping resource="erp.hbm.xml"></mapping>
+
+
 
 	</session-factory>
 

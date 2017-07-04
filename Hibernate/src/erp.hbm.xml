@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.erp.employee.ERPEmployee" table="TABLE_USER">
+		<id name="employeeId" type="int" column="EMPLOYEE_ID">
+			<generator class="native"></generator>
+		</id>
+		<property name="username" type="string" column="USERNAME"></property>
+		<property name="password" type="string" column="PASSWORD"></property>
+		<property name="enabled" type="boolean" column="enabled"></property>
+
+		<many-to-one name="role" class="com.erp.employee.ERPRole"
+			cascade="save-update" column="ROLE_ID" fetch="select" >
+
+		</many-to-one>
+
+	</class>
+
+
+	<class name="com.erp.employee.ERPRole" table="USER_ROLES">
+		<id name="roleId" type="int" column="ROLE_ID">
+			<generator class="native"></generator>
+		</id>
+		<property name="roleDesc" type="string" column="ROLE"></property>
+
+		<set name="employeeSet" table="TABLE_USER" inverse="true" >
+			<key column="ROLE_ID" not-null="true" />
+			<one-to-many class="com.erp.employee.ERPEmployee" />
+		</set>
+
+	</class>
+
+
+
+</hibernate-mapping>
