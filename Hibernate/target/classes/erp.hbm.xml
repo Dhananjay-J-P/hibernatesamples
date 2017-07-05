@@ -12,9 +12,7 @@
 		<property name="enabled" type="boolean" column="enabled"></property>
 
 		<many-to-one name="role" class="com.erp.employee.ERPRole"
-			cascade="save-update" column="ROLE_ID" fetch="select" >
-
-		</many-to-one>
+			cascade="save-update" column="ROLE_ID" fetch="select" />
 
 	</class>
 
@@ -25,12 +23,37 @@
 		</id>
 		<property name="roleDesc" type="string" column="ROLE"></property>
 
-		<set name="employeeSet" table="TABLE_USER" inverse="true" >
+		<set name="employeeSet" table="TABLE_USER" inverse="true">
 			<key column="ROLE_ID" not-null="true" />
 			<one-to-many class="com.erp.employee.ERPEmployee" />
 		</set>
+	</class>
+
+	<class name="com.erp.customer.ERPAddress" table="TABLE_ADDRESS">
+		<id name="addressId" type="int" column="ADDRESS_ID">
+			<generator class="native"></generator>
+		</id>
+		<property name="mainAddress" type="string" column="MAIN_ADDRESS"></property>
+		<property name="state" type="string" column="STATE"></property>
+		<property name="pincode" type="int" column="PINCODE"></property>
+		<one-to-one name="customer" class="com.erp.customer.ERPCustomer"></one-to-one>
 
 	</class>
+
+
+	<class name="com.erp.customer.ERPCustomer" table="TABLE_CUSTOMER">
+		<id name="customerId" type="string" column="CUSTOMER_ID">
+			<generator class="com.erp.customer.ERPCustomerIdGenerator"></generator>
+		</id>
+		<property name="name" type="string" column="NAME"></property>
+		<property name="lname" type="string" column="LNAME"></property>
+		<property name="mobileNumber" type="long" column="CONTACT"></property>
+		<property name="alternateContact" type="long" column="ALTER_CONTACT"></property>
+		<one-to-one name="address" class="com.erp.customer.ERPAddress"
+			cascade="save-update" ></one-to-one>
+
+	</class>
+
 
 
 

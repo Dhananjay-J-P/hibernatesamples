@@ -6,6 +6,8 @@ package h;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.erp.customer.ERPAddress;
+import com.erp.customer.ERPCustomer;
 import com.erp.employee.ERPEmployee;
 import com.erp.employee.ERPRole;
 
@@ -30,10 +32,20 @@ public class AppTester {
 
 		session.beginTransaction();
 
+		testCustomer(session);
 		session.getTransaction().commit();
 
 		session.close();
 
+	}
+	
+	public static void testCustomer(Session session)
+	{
+		
+		ERPAddress  ad=new ERPAddress("VartakNagar", "maharastra", 400606);
+		ERPCustomer c=new ERPCustomer("Dhananjay", "Patade", ad, 99300, 45555);
+		
+		session.save(c);
 	}
 
 	public static void testEmployeeRole(Session session) {
