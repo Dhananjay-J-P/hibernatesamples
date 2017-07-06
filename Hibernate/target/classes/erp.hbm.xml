@@ -68,6 +68,8 @@
 			<key column="PART_ID"></key>
 			<many-to-many class="com.erp.product.ERPProduct" column="PRODUCT_ID"></many-to-many>
 		</set>
+		<property name="recordCreatedTime" type="timestamp" column="TS_CRT_RCRD"></property>
+		<property name="recordModifiedTime" type="timestamp" column="TS_MDF_RCRD"></property>
 
 	</class>
 
@@ -87,6 +89,28 @@
 			<many-to-many class="com.erp.product.ERPPart" column="PART_ID"></many-to-many>
 		</set>
 
+
+		<property name="recordCreatedTime" type="timestamp" column="TS_CRT_RCRD"></property>
+		<property name="recordModifiedTime" type="timestamp" column="TS_MDF_RCRD"></property>
+	</class>
+
+	<class name="com.erp.product.ERPSaleItem" table="TABLE_ORDER_SALE_ITEMS">
+		<id name="id" type="int" column="SEQUENCE_NUMBER">
+			<generator class="native"></generator>
+		</id>
+		<property name="quantity" type="int" column="QUANTITY"></property>
+		<property name="total" type="int" column="total"></property>
+		<one-to-one name="item" class="com.erp.product.ERPProduct"
+			cascade="save-update"></one-to-one>
+	</class>
+	
+	<class name="com.erp.payment.ERPPayment" table="TABLE_ORDER_PAYMENT">
+		<id name="paymentId" type="int" column="SEQUENCE_NUMBER">
+			<generator class="native"></generator>
+		</id>
+		<property name="paymentType" type="string" column="PAYMENT_TYPE"></property>
+		<property name="paymentAcceptedBy" type="int" column="EMP_ID"></property>
+		<property name="paymentDate" type="date" column="PAYMENT_DATE"></property>
 	</class>
 
 

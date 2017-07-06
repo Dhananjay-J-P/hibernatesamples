@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.hibernate.HibernateException;
-import org.hibernate.engine.SessionImplementor;
 import org.hibernate.id.IdentifierGenerator;
 
 public class ERPCustomerIdGenerator implements IdentifierGenerator
@@ -18,10 +17,20 @@ public class ERPCustomerIdGenerator implements IdentifierGenerator
 	/* (non-Javadoc)
 	 * @see org.hibernate.id.IdentifierGenerator#generate(org.hibernate.engine.SessionImplementor, java.lang.Object)
 	 */
-	@Override
+/*	@Override
 	public Serializable generate(SessionImplementor session, Object object) throws HibernateException {
 		
-		String prefix="C";
+		
+	}*/
+
+	/* (non-Javadoc)
+	 * @see org.hibernate.id.IdentifierGenerator#generate(org.hibernate.engine.spi.SessionImplementor, java.lang.Object)
+	 */
+	@Override
+	public Serializable generate(org.hibernate.engine.spi.SessionImplementor session, Object arg1)
+			throws HibernateException {
+		// TODO Auto-generated method stub
+String prefix="C";
 		
 		Connection connection = session.connection();
 		

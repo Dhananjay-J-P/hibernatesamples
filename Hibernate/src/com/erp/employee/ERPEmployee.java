@@ -3,11 +3,13 @@
  */
 package com.erp.employee;
 
+import com.erp.common.ERPTimestamp;
+
 /**
  * @author Dhananjay P
  *
  */
-public class ERPEmployee {
+public class ERPEmployee extends ERPTimestamp{
 
 	/**
 	 * 

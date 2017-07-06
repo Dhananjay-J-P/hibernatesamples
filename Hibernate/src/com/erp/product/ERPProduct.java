@@ -6,11 +6,13 @@ package com.erp.product;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.erp.common.ERPTimestamp;
+
 /**
  * @author Dhananjay P
  *
  */
-public class ERPProduct {
+public class ERPProduct extends ERPTimestamp{
 
 	/**
 	 * 

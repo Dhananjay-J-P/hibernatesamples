@@ -3,21 +3,13 @@
  */
 package com.erp.customer;
 
-import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import org.hibernate.HibernateException;
-import org.hibernate.engine.SessionImplementor;
-import org.hibernate.id.IdentifierGenerator;
+import com.erp.common.ERPTimestamp;
 
 /**
  * @author Dhananjay P
  *
  */
-public class ERPCustomer {
+public class ERPCustomer extends ERPTimestamp{
 
 	/**
 	 * 

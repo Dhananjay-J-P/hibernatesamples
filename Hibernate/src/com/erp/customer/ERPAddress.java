@@ -1,5 +1,8 @@
 package com.erp.customer;
-public class ERPAddress{
+
+import com.erp.common.ERPTimestamp;
+
+public class ERPAddress extends ERPTimestamp{
 	
 	int addressId;
 	
