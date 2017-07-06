@@ -50,9 +50,45 @@
 		<property name="mobileNumber" type="long" column="CONTACT"></property>
 		<property name="alternateContact" type="long" column="ALTER_CONTACT"></property>
 		<one-to-one name="address" class="com.erp.customer.ERPAddress"
-			cascade="save-update" ></one-to-one>
+			cascade="save-update"></one-to-one>
 
 	</class>
+
+	<class name="com.erp.product.ERPPart" table="TABLE_PARTS">
+		<id name="partId" type="int" column="PART_ID">
+			<generator class="native"></generator>
+		</id>
+		<property name="name" type="string" column="NAME"></property>
+		<property name="imagePath" type="string" column="IMAGE_PATH"></property>
+		<property name="cost" type="double" column="COST"></property>
+		<property name="inventoryCount" type="int" column="INVENTORY_COUNT"></property>
+
+		<set name="productsSet" table="TABLE_PRODUCT_PART_MAPPING"
+			inverse="false" fetch="select" lazy="true">
+			<key column="PART_ID"></key>
+			<many-to-many class="com.erp.product.ERPProduct" column="PRODUCT_ID"></many-to-many>
+		</set>
+
+	</class>
+
+	<class name="com.erp.product.ERPProduct" table="TABLE_PRODUCTS">
+		<id name="id" type="string" column="PRODUCT_ID">
+			<generator class="com.erp.product.ERPProductIdGenerator"></generator>
+		</id>
+		<property name="name" type="string" column="NAME"></property>
+		<property name="description" type="string" column="Description"></property>
+		<property name="imagePath" type="string" column="IMAGE_PATH"></property>
+		<property name="cost" type="double" column="COST"></property>
+		<property name="inventoryCount" type="int" column="INVENTORY_COUNT"></property>
+
+		<set name="partSet" table="TABLE_PRODUCT_PART_MAPPING" inverse="true"
+			fetch="select" lazy="true" cascade="save-update">
+			<key column="PRODUCT_ID"></key>
+			<many-to-many class="com.erp.product.ERPPart" column="PART_ID"></many-to-many>
+		</set>
+
+	</class>
+
 
 
 

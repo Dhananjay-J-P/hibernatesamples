@@ -8,3 +8,7 @@ drop sequence customers_seq RESTRICT;
 CREATE SEQUENCE customers_seq
  START WITH     1
  INCREMENT BY   1;
+ 
+ CREATE SEQUENCE product_seq
+ START WITH     100
+ INCREMENT BY   1;

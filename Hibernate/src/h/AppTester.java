@@ -10,6 +10,8 @@ import com.erp.customer.ERPAddress;
 import com.erp.customer.ERPCustomer;
 import com.erp.employee.ERPEmployee;
 import com.erp.employee.ERPRole;
+import com.erp.product.ERPPart;
+import com.erp.product.ERPProduct;
 
 /**
  * @author Dhananjay P
@@ -32,11 +34,26 @@ public class AppTester {
 
 		session.beginTransaction();
 
-		testCustomer(session);
+		testProductParts(session);
+		
 		session.getTransaction().commit();
 
 		session.close();
 
+	}
+	
+	
+	public static void testProductParts(Session session)
+	{
+		ERPPart part=new ERPPart("Motor", 1000.00,"");
+		
+		ERPProduct product=new ERPProduct("Electric pump 2x gen", "240 pump second generation", 10000.00, "/images-");
+		
+		product.getPartSet().add(part);
+		part.getProductsSet().add(product);
+		
+		
+		session.save(product);
 	}
 	
 	public static void testCustomer(Session session)
