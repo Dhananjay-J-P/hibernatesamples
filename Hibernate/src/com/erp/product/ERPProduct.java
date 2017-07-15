@@ -35,6 +35,18 @@ public class ERPProduct extends ERPTimestamp{
 	
 	
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "ERPProduct [id=" + id + ", name=" + name + ", description=" + description + ", cost=" + cost
+				+ ", imagePath=" + imagePath + ", inventoryCount=" + inventoryCount + ", serialNumber=" + serialNumber
+				+ "]";
+	}
+
+
+
 	/**
 	 * @return the inventoryCount
 	 */

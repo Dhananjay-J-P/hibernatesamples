@@ -22,12 +22,14 @@
 			<generator class="native"></generator>
 		</id>
 		<property name="roleDesc" type="string" column="ROLE"></property>
-
 		<set name="employeeSet" table="TABLE_USER" inverse="true">
 			<key column="ROLE_ID" not-null="true" />
 			<one-to-many class="com.erp.employee.ERPEmployee" />
 		</set>
+
 	</class>
+
+
 
 	<class name="com.erp.customer.ERPAddress" table="TABLE_ADDRESS">
 		<id name="addressId" type="int" column="ADDRESS_ID">
@@ -74,9 +76,11 @@
 	</class>
 
 	<class name="com.erp.product.ERPProduct" table="TABLE_PRODUCTS">
+
 		<id name="id" type="string" column="PRODUCT_ID">
 			<generator class="com.erp.product.ERPProductIdGenerator"></generator>
 		</id>
+		<!-- <cache usage="read-write"/> -->
 		<property name="name" type="string" column="NAME"></property>
 		<property name="description" type="string" column="Description"></property>
 		<property name="imagePath" type="string" column="IMAGE_PATH"></property>
@@ -103,7 +107,7 @@
 		<one-to-one name="item" class="com.erp.product.ERPProduct"
 			cascade="save-update"></one-to-one>
 	</class>
-	
+
 	<class name="com.erp.payment.ERPPayment" table="TABLE_ORDER_PAYMENT">
 		<id name="paymentId" type="int" column="SEQUENCE_NUMBER">
 			<generator class="native"></generator>
@@ -112,6 +116,42 @@
 		<property name="paymentAcceptedBy" type="int" column="EMP_ID"></property>
 		<property name="paymentDate" type="date" column="PAYMENT_DATE"></property>
 	</class>
+
+
+	<query name="findAllProducts"> <![CDATA[from ERPProduct]]> </query>
+	<query name="findByName">select name from ERPProduct </query>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

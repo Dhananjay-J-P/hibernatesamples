@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<!-- <class name="yolo.Person" table="TABLE_PERSON"> <id name="personId" 
+		type="int"> <generator class="native"></generator> </id> <property name="name" 
+		type="string"></property> <property name="age" type="int"></property> <many-to-one 
+		name="address" class="yolo.Address" cascade="save-update" column="ADDDDDDDDDDDDDD"></many-to-one> 
+		<set name="degreeSet" table="TABLE_PERSION_DEGREE" cascade="save-update" 
+		inverse="true"> <key column="PER_ID"></key> <many-to-many class="yolo.Degree" 
+		column="DEG_ID"></many-to-many> </set> </class> <class name="yolo.Address" 
+		table="Table_address"> <id name="addressId" type="int"> <generator class="native"></generator> 
+		</id> <property name="detail" type="string"></property> <set name="persons" 
+		table="TABLE_USER" inverse="false"> <key column="ADDDDDDDDDDDDDD"></key> 
+		<one-to-many class="yolo.Person" /> </set> </class> <class name="yolo.Degree" 
+		table="TABLE_DEGREE"> <id name="degreeId" type="int"> <generator class="native"></generator> 
+		</id> <property name="name" type="string"></property> <set name="persons" 
+		table="TABLE_PERSION_DEGREE" cascade="save-update" inverse="false"> <key 
+		column="DEG_ID"></key> <many-to-many class="yolo.Person" column="PER_ID"></many-to-many> 
+		</set> </class> -->
+	<class name="yolo.Vehicle" table="table_vehicle"
+		discriminator-value="veh">
+		<id name="id" type="int">
+			<generator class="native"></generator>
+		</id>
+		<discriminator column="type" type="string"></discriminator>
+		<property name="name" type="string"></property>
+		<subclass name="yolo.TwoWheeler" discriminator-value="two">
+			<property name="handle" type="string"></property>
+		</subclass>
+		<subclass name="yolo.CarWheeler" discriminator-value="car">
+			<property name="steering" type="string"></property>
+		</subclass>
+	</class>
+	
+	<query name="getName" ><![CDATA[from Vehicle where id=:id]]> </query>
+
+
+	<!-- <class name="yolo.Vehicle" table="table_vehicle"> <id name="id" type="int"> 
+		<generator class="sequence"></generator> </id> <property name="name" type="string"></property> 
+		<union-subclass name="yolo.TwoWheeler" table="table_bike_vehicle"> <property 
+		name="handle" type="string"></property> </union-subclass> <union-subclass 
+		name="yolo.CarWheeler" table="table_car_vehicle"> <property name="steering" 
+		type="string"></property> </union-subclass> </class> -->
+
+	<!-- <class name="yolo.Vehicle" table="table_vehicle"> <id name="id" type="int"> 
+		<generator class="sequence"></generator> </id> <property name="name" type="string"></property> 
+		<joined-subclass name="yolo.TwoWheeler" table="table_bike_vehicle"> <key 
+		column="id"></key> <property name="handle" type="string"></property> </joined-subclass> 
+		<joined-subclass name="yolo.CarWheeler" table="table_car_vehicle"> <key column="id"></key> 
+		<property name="steering" type="string"></property> </joined-subclass> </class> -->
+
+</hibernate-mapping>

@@ -5,16 +5,19 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
-		<property name="hibernate.connection.url">jdbc:derby://localhost:1527/db</property>
-		<property name="hibernate.connection.username">example</property>
-		<property name="hibernate.connection.password">example</property>
+		<property name="hibernate.connection.url">jdbc:derby://localhost:1527/trn</property>
+		<property name="hibernate.connection.username">trn</property>
+		<property name="hibernate.connection.password">trn</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
+		<property name="connection.pool_size">1</property>
 		<property name="hibernate.hbm2ddl.auto">create</property>
-		
+
+		<property name="hibernate.generate_statistics">true</property>
 		<!-- Employee -->
-		<mapping resource="erp.hbm.xml"></mapping>
+
+		<mapping resource="revise.xml" />
 
 
 
